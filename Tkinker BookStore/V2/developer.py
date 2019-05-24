@@ -3,7 +3,7 @@ from tkinter import *
 def develop():
         window = Tk()
         window.title('Developer')
-        window.geometry('300x190+450+200')
+        window.geometry('300x190+525+200')
         window.resizable(0, 0)
         window.grid_rowconfigure(3, weight=1)
 

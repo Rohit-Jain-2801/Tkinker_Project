@@ -2,7 +2,7 @@ from tkinter import *
 import tkinter.messagebox as tkmb
 import backend as bk
 from multilist import *
-import developer
+import developer,about
 from pdf_creator import *
 
 window = Tk()
@@ -107,7 +107,7 @@ submenu1.add_command(label="Exit",command=quit)
 
 submenu2 = Menu(menu,tearoff=0)
 menu.add_cascade(label="Help",menu=submenu2)
-submenu2.add_command(label="About")
+submenu2.add_command(label="About",command=about.about)
 submenu2.add_command(label="Contact",command=developer.develop)
 
 l1 = Label(window,text="Title")

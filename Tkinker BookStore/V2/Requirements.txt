@@ -1,2 +1,3 @@
 pypdf2==1.26.0
 datetime==4.3
+fpdf==1.7.2
