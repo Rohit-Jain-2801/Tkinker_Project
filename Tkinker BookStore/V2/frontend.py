@@ -12,6 +12,14 @@ window.resizable(0, 0)
 window.grid_rowconfigure(3, weight=1)
 window.grid_columnconfigure(3, weight=1)
 
+def save_pdf():
+        try:
+                create_pdf(bk.view())
+        except Exception as err:
+                tkmb.showwarning('Records',err,parent=window)
+        else:
+                tkmb.showinfo('Successful','Pdf is successfully created!',parent=window)
+
 def delete_inputs():
         e1.delete(0,END)
         e2.delete(0,END)
@@ -93,7 +101,7 @@ window.config(menu=menu)
 
 submenu1 = Menu(menu,tearoff=0)
 menu.add_cascade(label="File",menu=submenu1)
-submenu1.add_command(label="Save as PDF",command=create_pdf)
+submenu1.add_command(label="Save as PDF",command=save_pdf)
 submenu1.add_separator()
 submenu1.add_command(label="Exit",command=quit)
 
