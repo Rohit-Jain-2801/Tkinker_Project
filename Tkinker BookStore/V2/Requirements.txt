@@ -1,0 +1,2 @@
+pypdf2==1.26.0
+datetime==4.3
