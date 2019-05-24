@@ -10,7 +10,8 @@ Features:-
 6. Save book details in a pdf file
 
 Note:-
-All the book details are stored in the database (book.db - hidden file)
+1. All the book details are stored in the database (book.db - hidden file)
+2. Pdf file is made using Reportlab library
 
 Command to start the application:-
 python frontend.py
