@@ -7,11 +7,11 @@ class MultiColumnListbox(object):
     # print('B')
     def run(self,list0=''):
         # print('C')    
-        global car_list
+        global dlist
         if list0=='':
-            car_list = bk.view()
+            dlist = bk.view()
         else:
-            car_list = list0
+            dlist = list0
         self.tree = None
         self._setup_widgets()
         self._build_tree()
@@ -22,9 +22,9 @@ class MultiColumnListbox(object):
         self.tree = ttk.Treeview(columns=header, show="headings")
         self.tree.grid(row=3,column=0,rowspan=6,columnspan=4, sticky='nsew')
         vsb = ttk.Scrollbar(orient="vertical", command=self.tree.yview)
-        vsb.grid(row=3,column=5,rowspan=6, sticky='ns')
+        vsb.grid(row=3,column=5,rowspan=6, sticky='nsw')
         hsb = ttk.Scrollbar(orient="horizontal", command=self.tree.xview)
-        hsb.grid(row=9,column=0,columnspan=4, sticky='ew')
+        hsb.grid(row=9,column=0,columnspan=4, sticky='new')
         self.tree.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
         # container.grid_columnconfigure(0, weight=1)
         # container.grid_rowconfigure(0, weight=1)
@@ -35,7 +35,7 @@ class MultiColumnListbox(object):
             # adjust the column's width to the header string
             self.tree.column(col, width=tkFont.Font().measure(col.title()))
 
-        for item in car_list:
+        for item in dlist:
             self.tree.insert('', 'end', values=item)
             # adjust column's width if necessary to fit each value
             for ix, val in enumerate(item):
@@ -46,8 +46,7 @@ class MultiColumnListbox(object):
 def sortby(tree, col, descending):
     """sort tree contents when a column header is clicked on"""
     # grab values to sort
-    data = [(tree.set(child, col), child) \
-        for child in tree.get_children('')]
+    data = [(tree.set(child, col), child) for child in tree.get_children('')]
     # if the data to be sorted is numeric change to float
     #data =  change_numeric(data)
     # now sort the data in place
@@ -55,8 +54,7 @@ def sortby(tree, col, descending):
     for ix, item in enumerate(data):
         tree.move(item[1], '', ix)
     # switch the heading so it will sort in the opposite direction
-    tree.heading(col, command=lambda col=col: sortby(tree, col, \
-        int(not descending)))
+    tree.heading(col, command=lambda col=col: sortby(tree, col, int(not descending)))
 
 def clear(tree):
     tree.delete(*tree.get_children())
