@@ -6,7 +6,7 @@ import backend as bk
 class MultiColumnListbox(object):
     # print('B')
     def run(self,list0=''):
-        # print('C')    
+        # print('C')   
         global dlist
         if list0=='':
             dlist = bk.view()
@@ -46,13 +46,27 @@ class MultiColumnListbox(object):
 def sortby(tree, col, descending):
     """sort tree contents when a column header is clicked on"""
     # grab values to sort
+    # print(tree.get_children(''))
     data = [(tree.set(child, col), child) for child in tree.get_children('')]
+    # tree.set command:
+        # set(item, column=None, value=None)
+        # With one argument, returns a dictionary of column/value pairs for the specified item.
+        # With two arguments, returns the current value of the specified column.
+        # With three arguments, sets the value of given column in given item to the specified value.
+    # print(data)
     # if the data to be sorted is numeric change to float
-    #data =  change_numeric(data)
+    # data =  change_numeric(data)
     # now sort the data in place
     data.sort(reverse=descending)
     for ix, item in enumerate(data):
         tree.move(item[1], '', ix)
+        # tree.move command:
+        #     move(item, parent, index)
+        #     Moves item to position index in parent’s list of children.
+        #     It is illegal to move an item under one of its descendants.
+        #     If index is less than or equal to zero, item is moved to the beginning;
+        #     if greater than or equal to the number of children, it is moved to the end.
+        #     If item was detached it is reattached.
     # switch the heading so it will sort in the opposite direction
     tree.heading(col, command=lambda col=col: sortby(tree, col, int(not descending)))
 
